@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load filters %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'images/pokeball.png' %}">
+    <title>Pokedex - {{pokemon.name | capfirst}}</title>
+</head>
+
+<body>
+    <img class="logo" src="{% static 'images/logo.png' %}" alt="logo">
+    <div class="container">
+        <div class="top-bar">
+            <h1>Pokedex</h1>
+        </div>
+        <div class="pokedex">
+            
+            <div class="left-menu">
+                <div class="name">
+                    <h2>{{pokemon.name | capfirst}}</h2>
+                </div>
+                <div class="img">
+                    <img class="pokemon-image" src="{{pokemon.p_image}}" alt="{{pokemon.name | capfirst}}">
+                </div>
+                <div class="infos">
+                    <a href="/pokedex/team/">Show your Team</a>
+                </div>
+            </div>
+            <div class="right-menu">
+                <div class="wrapper">
+                    <div class="row">Type: <span>{{pokemon.p_type | title | format_type}}</span></div>
+                    <div class="row">Height: <span>{{pokemon.p_height | format_height}} m</span></div>
+                    <div class="row">Weight: <span>{{pokemon.p_weight | format_weight}} kg</span></div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

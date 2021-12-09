@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load filters %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'images/pokeball.png' %}">
+    <title>Pokedex - Team</title>
+</head>
+
+<body>
+    <img class="logo" src="{% static 'images/logo.png' %}" alt="logo">
+    <div class="container">
+        <div class="top-bar">
+            <h1>Pokedex</h1>
+        </div>
+        <div class="pokedex">
+            
+            <div class="left-menu">
+                <div class="name">
+                    <h2>Team</h2>
+                </div>
+                <div class="team-grid">
+                    <div class="pokemon row1-col1">
+                        {% if team.0 != 'None' %}
+                        <a href="/pokedex/pokemon/{{team.0}}">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ team.0}}.png">
+                        </a>
+                        {% else %}
+                        <a href="/pokedex/">
+                            <img src="{% static 'images/unknown-small.png' %}">
+                        </a>
+                        {% endif %}
+                    </div>
+                    <div class="pokemon row1-col2">
+                        {% if team.1 != 'None' %}
+                        <a href="/pokedex/pokemon/{{team.1}}">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ team.1}}.png">
+                        </a>
+                        {% else %}
+                        <a href="/pokedex/">
+                            <img src="{% static 'images/unknown-small.png' %}">
+                        </a>
+                        {% endif %}
+                    </div>
+                    <div class="pokemon row2-col1">
+                        {% if team.2 != 'None' %}
+                        <a href="/pokedex/pokemon/{{team.2}}">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ team.2}}.png">
+                        </a>
+                        {% else %}
+                        <a href="/pokedex/">
+                            <img src="{% static 'images/unknown-small.png' %}">
+                        </a>
+                        {% endif %}
+                    </div>
+                    <div class="pokemon row2-col2">
+                        {% if team.3 != 'None' %}
+                        <a href="/pokedex/pokemon/{{team.3}}">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ team.3}}.png">
+                        </a>
+                        {% else %}
+                        <a href="/pokedex/">
+                            <img src="{% static 'images/unknown-small.png' %}">
+                        </a>
+                        {% endif %}
+                    </div>
+                    <div class="pokemon row3-col1">
+                        {% if team.4 != 'None' %}
+                        <a href="/pokedex/pokemon/{{team.4}}">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ team.4}}.png">
+                        </a>
+                        {% else %}
+                        <a href="/pokedex/">
+                            <img src="{% static 'images/unknown-small.png' %}">
+                        </a>
+                        {% endif %}
+                    </div>
+                    <div class="pokemon row3-col2">
+                        {% if team.5 != 'None' %}
+                        <a href="/pokedex/pokemon/{{team.5}}">
+                            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ team.5}}.png">
+                        </a>
+                        {% else %}
+                        <a href="/pokedex/">
+                            <img src="{% static 'images/unknown-small.png' %}">
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="right-menu">
+                <div class="wrapper">
+                    <form action="/pokedex/save_team/" method="POST">
+                        {% csrf_token %}
+                        {% for i in range %}
+                        <label for="pokemon-{{i}}">Pokemon {{i | add:1}}: </label>
+                        <select name="pokemon-{{i}}" id="pokemon-{{i}}">
+                            <option value="None">--- -----------</option>
+                            {% for pokemon in pokemons %}
+                              <option value="{{pokemon.id}}">{{pokemon.id | format_id}} - {{pokemon.name | capfirst}}</option>
+                            {% endfor %}
+                        </select>
+                        {% endfor %}
+                        <div class="buttons">
+                            <a href="/pokedex/">Back</a>
+                            <button type="submit">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

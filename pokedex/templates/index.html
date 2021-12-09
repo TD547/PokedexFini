@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load filters %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="icon" href="{% static 'images/pokeball.png' %}">
+    <title>Pokedex</title>
+</head>
+
+<body>
+    <img class="logo" src="{% static 'images/logo.png' %}" alt="logo">
+    <div class="container">
+        <div class="top-bar">
+            <h1>Pokedex</h1>
+        </div>
+        <div class="pokedex">
+            <div class="left-menu">
+                <div class="name">
+                    <h2>???</h2>
+                </div>
+                <div class="img">
+                    <img src="{% static 'images/unknown.png' %}" alt="pokeball">
+                </div>
+                <div class="infos">
+                    <a href="/pokedex/team/">Show your Team</a>
+                </div>
+            </div>
+            <div class="right-menu">
+                <div class="search-container">
+                    <input type="text" id="search" placeholder="&#128269;">
+                </div>
+                <div class="pokemon-list">
+                    <div class="col">
+                        {% for pokemon in pokemons %}
+                        <div class="item">
+                            <img src="{% static 'images/pokeball.png' %}" alt="">
+                            <div class="searchable">
+                                <a href="pokemon/{{pokemon.id}}">
+                                    <div class="row">{{pokemon.id | format_id}}
+                                        <span>{{pokemon.name | capfirst}}</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <img src="{% static 'images/pokeball.png' %}" alt="pokeball">
+                        <div class="row" style="pointer-events: none;">---<span>-----------</span></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="{% static 'js/filter.js' %}"></script>
+</body>
+
+</html>
