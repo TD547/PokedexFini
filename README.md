@@ -1,5 +1,3 @@
-# PokedexFini
-
 Projet Python (framework Django) réalisé par Marchand Thibaud, Colliaux Tom-Olivier, Karembé Moussa, Ollivier Dimitri
 
 Cette aplication permet à un utilisateur de consulter les 151 premier pokemons de l'API "Pokéapi" (https://pokeapi.co/) et des les ajouter dans une équipe.
